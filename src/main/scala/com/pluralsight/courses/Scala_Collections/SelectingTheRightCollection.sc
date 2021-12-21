@@ -1,0 +1,7 @@
+List("A", "B", "C")
+Map("a" -> 1, "b" -> 2)
+Iterable("x", "y", "z")
+Set(4, 6, 2, 1)
+Vector("a", "b", "c", "e")
+Array(("a", 1), ("b", 2))
+Seq(Map("A" -> 1), Map("B" -> 2))
