@@ -1,8 +1,9 @@
 package com.pluralsight.courses.Scala_Fundamentals.project.entities
 
 import java.time.LocalDate
-import scala.util.Random
 import java.util.UUID
+import scala.util.Random
+
 object BankOfScala {
   /* Phase 5 Refactor based on collections module */
   val random = new scala.util.Random()
@@ -124,8 +125,8 @@ object BankOfScala {
     Seq(("CreditCard", 99.00, 14.23, 20.00))
   }
 }
-  /* Phase 3
-  Phase 4 added curly braces and openAccounts function  */
+/* Phase 3
+Phase 4 added curly braces and openAccounts function  */
 //  def main(args: Array[String]): Unit = {
 //
 //    println("Opening Bank")
@@ -192,7 +193,7 @@ object BankOfScala {
 //      bank useCreditCard(accountId, Dollars(1 + randomAmount.nextInt(500)))
 //      bank payCreditCardBill(accountId, Dollars(1 + randomAmount.nextInt(100)))
 //    }
-    //^^^^^^^^ Reformatted above
+//^^^^^^^^ Reformatted above
 //    lendingAccountIds.foreach(bank useCreditCard (_, Dollars(1 + randomAmount.nextInt(500))))
 //    lendingAccountIds.foreach(bank payCreditCardBill (_, Dollars(1 + randomAmount.nextInt(100))))
 // }
@@ -219,7 +220,7 @@ object BankOfScala {
 //  }
 
 
-    /* Phase 2 */
+/* Phase 2 */
 //    println("Instantiating Bank")
 //
 //    val coreChecking = new CoreChecking(Dollars(1000), 0.025)
@@ -245,7 +246,7 @@ object BankOfScala {
 //    bobCheckingAccount.withdraw(dollars = 200)
 //    println(bobCheckingAccount)
 
-    /* Phase 1 */
+/* Phase 1 */
 
 //    val coreChecking = new CoreChecking(1000, 0.025)
 //    val studentCheckings = new StudentCheckings(0, 0.010)
@@ -270,3 +271,4 @@ object BankOfScala {
 //    bobCheckingAccount.withdraw(200)
 //    println(bobCheckingAccount)
 // }
+
