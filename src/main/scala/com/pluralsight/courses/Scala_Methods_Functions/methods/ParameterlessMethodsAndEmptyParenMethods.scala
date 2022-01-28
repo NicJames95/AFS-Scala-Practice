@@ -6,7 +6,7 @@ import com.pluralsight.courses.Scala_Methods_Functions.StockRecord
 object ParameterlessMethodsAndEmptyParenMethods extends App {
   /** Parameterless method - the method takes in no input arguments so we eliminate the parenthesis */
   def financeData(): Vector[StockRecord] = {
-    val source = io.Source.fromFile("src/main/resources/stockMarketData.csv")
+    val source = io.Source.fromFile("src/main/resources/GOOG.csv")
     for {
       line <- source.getLines().drop(1).toVector
       cols = line.split(",").map(_.trim)

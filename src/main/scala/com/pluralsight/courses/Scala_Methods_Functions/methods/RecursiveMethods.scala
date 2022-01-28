@@ -8,7 +8,7 @@ import scala.annotation.tailrec
 object RecursiveMethods extends App {
 
   def readFinanceData(): Vector[StockRecord] = {
-    val source = io.Source.fromFile("src/main/resources/stockMarketData.csv")
+    val source = io.Source.fromFile("src/main/resources/GOOG.csv")
     for {
       line <- source.getLines().drop(1).toVector
       cols = line.split(",").map(_.trim)
@@ -19,18 +19,18 @@ object RecursiveMethods extends App {
 
   private val data = readFinanceData()
 
-  //  def rollingAverage(numDays: Int): Unit = {
-  //    /** Using VAR rather than VAL makes the program less functional and more imperative */
-  //    var records = readFinanceData();
-  //    while (records.length >= numDays) {
-  //      val averageClose = records.map(_.close).take(numDays).sum / numDays
-  //      println(s"Rolling average close for $numDays days " +
-  //      s"date ${records.head.date}: $averageClose")
-  //
-  //      records = records.drop(1)
-  //    }
-  //    println("Execution Completed !")
-  //  }
+  def rollingAverage(numDays: Int): Unit = {
+    /** Using VAR rather than VAL makes the program less functional and more imperative */
+    var records = readFinanceData();
+    while (records.length >= numDays) {
+      val averageClose = records.map(_.close).take(numDays).sum / numDays
+      println(s"Rolling average close for $numDays days " + 
+        s"date ${records.head.date}: $averageClose")
+
+      records = records.drop(1)
+    }
+    println("Execution Completed !")
+  }
 
 
   /** A new stack frame will not be built for each recursive call -

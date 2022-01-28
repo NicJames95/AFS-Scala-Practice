@@ -43,7 +43,7 @@ class StudentCheckings(val minimumBalancePerMonth: Dollars, val interestRatePerY
 }
 
 /* ------------- Savings Products ---------- */
-class RewardsSavings(val minimumBalancePerMonth: Dollars, val interestRatePerYear: Double, trans: Int) extends Savings {
+class RewardsSavings(val minimumBalancePerMonth: Dollars, val interestRatePerYear: Double, val trans: Int) extends Savings {
   println("Created Rewards Savings Product")
 //  override val interestRatePerYear: Double = rate
 //  override val minimumBalancePerMonth: Int = bal

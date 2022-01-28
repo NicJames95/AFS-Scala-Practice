@@ -1,3 +1,4 @@
+import scala.language.postfixOps
 case class Dollars(amount: Int){
   def prettify: String = "$" + amount
 }
