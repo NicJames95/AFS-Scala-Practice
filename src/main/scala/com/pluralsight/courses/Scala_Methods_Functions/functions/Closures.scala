@@ -1,23 +1,24 @@
 package com.pluralsight.courses.Scala_Methods_Functions.functions
 
-import com.pluralsight.courses.Scala_Methods_Functions.StockRecord
+import com.pluralsight.courses.Scala_Methods_Functions.GOOGRecord
 
 object Closures extends App {
 
-  def readFinanceData(): Vector[StockRecord] = {
+  def readFinanceData(): Vector[GOOGRecord] = {
     val source = io.Source.fromFile("src/main/resources/GOOG.csv")
     for {
       line <- source.getLines().drop(1).toVector
       cols = line.split(",").map(_.trim)
-    } yield StockRecord(cols(0), cols(1).toFloat,
+    } yield GOOGRecord(cols(0), cols(1).toFloat,
       cols(2).toFloat, cols(3).toFloat,
-      cols(4).toFloat, cols(5))
+      cols(4).toFloat, cols(5).toFloat,
+      cols(6).toDouble)
 
     /** cols(5).toFloat,
      * cols(6).toDouble DO NOT HAVE THE GOOG FILE */
   }
 
-  val getDecisionMakerFunction = (records: Vector[StockRecord], date: String) => {
+  val getDecisionMakerFunction = (records: Vector[GOOGRecord], date: String) => {
 
     val currDate = date
     val currRecords = records

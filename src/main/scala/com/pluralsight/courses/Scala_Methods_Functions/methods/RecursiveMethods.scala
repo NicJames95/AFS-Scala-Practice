@@ -1,6 +1,6 @@
 package com.pluralsight.courses.Scala_Methods_Functions.methods
 
-import com.pluralsight.courses.Scala_Methods_Functions.StockRecord
+import com.pluralsight.courses.Scala_Methods_Functions.{GOOGRecord, StockRecord}
 
 import scala.annotation.tailrec
 
@@ -8,7 +8,7 @@ import scala.annotation.tailrec
 object RecursiveMethods extends App {
 
   def readFinanceData(): Vector[StockRecord] = {
-    val source = io.Source.fromFile("src/main/resources/GOOG.csv")
+    val source = io.Source.fromFile("src/main/resources/stockMarketData.csv")
     for {
       line <- source.getLines().drop(1).toVector
       cols = line.split(",").map(_.trim)
@@ -17,7 +17,19 @@ object RecursiveMethods extends App {
       cols(4).toFloat, cols(5))
   }
 
+  def readGoogData(): Vector[GOOGRecord] =  {
+    val source = io.Source.fromFile("src/main/resources/GOOG.csv")
+    for {
+      line <- source.getLines().drop(1).toVector
+      cols = line.split(",").map(_.trim)
+    } yield GOOGRecord(cols(0), cols(1).toFloat,
+      cols(2).toFloat, cols(3).toFloat,
+      cols(4).toFloat, cols(5).toFloat,
+      cols(6).toDouble)
+  }
+
   private val data = readFinanceData()
+  private val googData = readGoogData()
 
   def rollingAverage(numDays: Int): Unit = {
     /** Using VAR rather than VAL makes the program less functional and more imperative */
@@ -31,6 +43,8 @@ object RecursiveMethods extends App {
     }
     println("Execution Completed !")
   }
+
+
 
 
   /** A new stack frame will not be built for each recursive call -
@@ -56,7 +70,24 @@ object RecursiveMethods extends App {
     }
   }
 
+  @tailrec
+  def rollingGoogAverage(records: Vector[GOOGRecord], numDays: Int): Unit = {
+    if (records.length < numDays) {
+      println("Execution completed!")
+    } else {
+      val averageClose = records.map(_.close).take(numDays).sum / numDays
+
+      println(s"Rolling average close for $numDays days " +
+      s"date ${records.head.date}: $averageClose")
+
+      val updatedRecords = records.drop(1)
+      rollingGoogAverage(updatedRecords, numDays)
+    }
+  }
+
   rollingAverage(readFinanceData(), 7)
+  println("-" * 50)
+  rollingGoogAverage(readGoogData(), 7)
 
 
 }
