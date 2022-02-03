@@ -18,10 +18,13 @@ object Closures extends App {
      * cols(6).toDouble DO NOT HAVE THE GOOG FILE */
   }
 
+  val data = readFinanceData()
+
   val getDecisionMakerFunction = (records: Vector[GOOGRecord], date: String) => {
 
     val currDate = date
     val currRecords = records
+
     /** The function value created at runtime from this function literal is called a CLOSURE
      * where the values of the FREE VARIABLES referenced from within the function are captured */
     val makeDecision = (percentDelta: Float) => {
@@ -49,9 +52,9 @@ object Closures extends App {
   }
 
   println("-" * 50)
-  val decisionMaker = getDecisionMakerFunction(readFinanceData(), "2020-5-15")
-  decisionMaker(2) // No call based on date "2020-05-15, percentage move 1.7177734"
+  val decisionMaker = getDecisionMakerFunction(data, "2020-01-13")
+  decisionMaker(5) // No call based on date "2020-05-15, percentage move 1.7177734"
 
-  val decisionMaker2 = getDecisionMakerFunction(readFinanceData(), "2020-03-18")
-  decisionMaker2(2) // Buy based on date "2020-03-18, percentage move 3.813503"
+  val decisionMaker2 = getDecisionMakerFunction(data, "2020-01-02")
+  decisionMaker2(0) // Buy based on date "2020-03-18, percentage move 3.813503"
 }
